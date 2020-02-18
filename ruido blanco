@@ -1,0 +1,9 @@
+#simulación de un proceso de ruido en r studio 
+# Simulación de un proceso de ruido blanco para una muestra de 500
+  w<-rnorm(500,0,1)
+  View(w)  
+  print(w)  
+  # Representación gráfica del proceso de ruido blanco 
+  plot.ts(w,main="Ejemplo_ruido_blanco", xlab="Tiempo", ylab="valor", col="red")
+  # Correlograma del proceso de ruido blanco hallado 
+  c<-acf(w, main="Autocorrelacion_Ruido_Blanco", xlab="retardo", ylab="ACF", COL="red")
