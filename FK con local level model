@@ -1,0 +1,48 @@
+#SIMULACION DEL FILTRO DE KALMAN APLICADO A UN PROCESO CON MODELO LOCAL LEVEL MODEL 
+# Se define la fuente que contiene las funciones 
+  set.seed(1)  
+  # Asignamos valores a las variables de entrada
+  x1=0
+  Q=1
+  R=1
+  a=1
+  c=1
+  n=20
+  
+  
+  EspacioEstados=function(x1,Q,R,a,c,n){
+    w<-rnorm(n,0,sqrt(Q))
+    v<-rnorm(n,0,sqrt(R))
+    x<-rep(0,n+1)
+    x[1]<-x1
+    y<-rep(0,n)
+    for (i in 1:n){
+      x[i+1]<-(a*x[i]+w[i])
+      y[i]<-(c*x[i]+v[i])
+    }
+  lstee=list(x=x,y=y)
+  return(lstee)
+  }
+   
+  
+  
+  FiltroKalman=function(y,a,c,Q,R,x1,p1,n){
+    w<-rnorm(n,0,sqrt(Q))
+    v<-rnorm(n,0,sqrt(R))
+    xe<-rep(0,n+1)
+    xe[1]<-x1
+    p<-rep(0,n+1)
+    p[1]<-p1
+    e<-rep(0,n)
+    s<-rep(0,n)
+    k<-rep(0,n)
+    for (i in 1:n){
+      e[i]<-(y[i]-c*xe[i])
+      s[i]<-((c^2)*p[i]+R)
+      k[i]<-(a*c*p[i]/s[i])
+      xe[i+1]<-(a*xe[i]+k[i]*e[i])
+      p[i+1]<-((a^2)*p[i]+Q-(k[i]^2)*s[1])
+      }
+    lstkalman=list(xe=xe, p=p, e=e, s=s, k=k)
+    return(lstkalman)
+  }  
