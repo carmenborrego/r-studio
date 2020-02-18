@@ -1,0 +1,23 @@
+#Simulación de un proceso con local level model
+#Se crean dos procesos de ruido blanco,w y v,para una muestra de n=100
+n=100
+w<-rnorm(n,0,1)
+print (w)
+v<-rnorm(n,0,1)
+print ( v)
+# Sedefineelvectorydencomponentesparalaobservacion
+y<-rep ( 0,n)
+# Sedefineelvectorxysuvalorinicial,1
+x<-rep ( 0,n+1)
+x [1]=1
+# Seaplicaelmodelodelocallevelmodelparahallary
+for ( iin1:n){
+y [i]<-x [i]+v[i]
+x [i+1]<-x [i]+w[i]}
+#Semuestralosvaloresdexey
+print(x)
+print(y)
+#Serepresentanlosvaloresdexeyenunagrafica,enrojoyazul
+plot.ts y,main="Local Level Model", col="blue",xlab="Tiempo,t",
+ylab="valor Xt, Yt")
+lines(x,col="red")
