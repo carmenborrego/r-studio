@@ -1,0 +1,13 @@
+# Simulación de un proceso de paseo aleatorio 
+  w<-rnorm(100,0,1)
+  print(w)  
+  x=rnorm(100)    
+  # Se le asigna a la serie el valor inicial de -1
+  x[1]<--1
+  # Se hallan los valores de la serie utilizando un proceso de paseo aleatorio 
+  for (i in 1:(length(x))){
+  x[i+1]=x[i]+w[i]  
+  }
+  # Se muestran y representan los valores de la serie en pantalla 
+  print(x)
+  plot.ts(x)
