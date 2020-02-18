@@ -1,0 +1,19 @@
+# Simulación del Filtro de Kalman aplicado a un proceso con modelo 
+  # de espacio de los estados 
+  
+  x1=0
+  Q=1
+  R=1
+  a=0.5
+  c=2
+  n=20
+  lstSolicionee<-EspacioEstados(x1,Q,R,a,c,n)
+  # Se muestran por pantalla de salida y de EspacioEstados para entrar con ella
+  # en filtro de Kalman
+  p1=0
+  lstSolicionKalman<-FiltroKalman(lstSolicionee$y,a,c,Q,R,x1,p1,n)  
+  
+  # Se muestra en la pantalla los valores de salida de la función FiltroKalman
+  print(lstSolicionKalman)
+  # Se representan graficamente los valores de x real frente a xe (estimada)
+  plot.ts(lstSolicionKalman$xe,col="red")
