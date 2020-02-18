@@ -1,0 +1,30 @@
+#simulación del filtro de kalman aplicado a un proceso con modelo de espacio de los estados
+#se fijan los valores aleatorios para que no varíen cada vez que se ejecute el programa
+set.seed(1) 
+#se llama a la función espacio de los estados para hallar y 
+#se dan valores aleatorios a todas las variables de entrada de la funcion 
+x1=0
+Q=1
+R=1
+a=0.5
+c=2
+n=20
+lstSolucionee<-EspacioEstados(x1,Q,R,a,c,n) 
+#se muestran por pantalla los valores de salida de la funcion Espacio estados
+print(lstSolucionee)
+#se utiliza la variable de salida y para entrar en FiltroKalman
+#se dan valor a todas las variables de entrada de la funcion 
+p1=0
+lstSolucionkalman<-FiltroKalman(lstSolucionee$y,a,c,Q,R,x1,p1,n)
+#se muestran por pantalla los valores de salida de la funcion FiltroKalman 
+print(lstSolucionkalman) 
+
+#se representan graficamente los valores x real frente a xe (estimda) 
+plot.ts(lstSolucionee$x, col="red") 
+lines(lstSolucionkalman$xe, col="green") 
+#se halla el valor de ye, estimada a traves del xe, estimada 
+ye<-rep(0,n)
+ye=c*lstSolucionkalman$xe[1:n]
+#grafica que representa y, en color naranja, frente a ye en color azul 
+plot.ts(lstSolucionee$y, main="Filtro_de_Kalman_con_espacio_de_los_Estados") 
+lines(ye, col="blue")
