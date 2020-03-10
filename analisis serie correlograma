@@ -1,0 +1,24 @@
+#programas para analisis de la serie explicativa
+#estudio de la tendencia mediante la recta de regresion
+#Se define la fuente de funciones utilizadas
+rm(list=ls())
+#Lectura de datos para el valor de la variable explicativa
+nombrevariable<−scan("nombrevariable.txt")
+#Se muestran los datos importados del fichero .txt del precio del petroleo
+print(datosvariable)
+ypet<−(datosvariable)
+#Se crea un vector que contenga la numeración de los meses
+months<−(1:n)
+#Se crea y representa graficamente la linea de regresion 
+regresion2<−lm(ynomvar ~ months)
+plot.ts(ynomvar,col="orange",xlab="Months",ylab="VariableLevel")
+abline(regresion2)
+
+#correlograma de los datos variable explicativa
+#Definicion de las funciones de las fuentes utilizadas
+rm(list=ls())
+#Lectura de los datos del fichero .txt de la variable explicativa
+datospetrol<−scan("nombrearchivo.txt")
+Precio_Petroleo<−datospetrol
+#Correlograma de los historicos variable explicativa
+acf(Nombre_)
