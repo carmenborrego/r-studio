@@ -19,6 +19,6 @@ abline(regresion2)
 rm(list=ls())
 #Lectura de los datos del fichero .txt de la variable explicativa
 datospetrol<−scan("nombrearchivo.txt")
-Precio_Petroleo<−datospetrol
+NOmbre_Variable<−datosvariable
 #Correlograma de los historicos variable explicativa
-acf(Nombre_)
+acf(Nombre_Variable)
